@@ -6,6 +6,13 @@ from datetime import datetime
 
 load_dotenv(find_dotenv())
 
+
+try:
+    import pymysql
+    pymysql.install_as_MySQLdb()
+except ImportError:
+    pass
+
 try:
     from flup.server.fcgi import WSGIServer
     from django.core.wsgi import get_wsgi_application
@@ -18,8 +25,4 @@ except Exception as e:
         f.write("\n\n")
         f.write(str(e))
         f.write(traceback.format_exc())
-
-
-
-
 
