@@ -33,7 +33,7 @@ try:
         execute_from_command_line(sys.argv)
 except Exception as e:
     import traceback
-    with open(os.environ['MANAGE_LOG_FILE_NAME'], 'a+') as f:
+    with open('../logs/debug-manage-py.log', 'a+') as f:
         f.write("\n\n++++++++ [" + str(datetime.now()) + "] ++++++++++\n\n")
         f.write(str(e))
         f.write(traceback.format_exc())

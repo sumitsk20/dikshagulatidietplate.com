@@ -164,7 +164,7 @@ LOGGING = {
             'formatter': 'verbose',
             'maxBytes': 1024 * 1024 * 5,  # 5 MB
             'backupCount': 5,
-            'filename': os.environ['LOG_FILE_NAME']
+            'filename': os.path.join(os.path.dirname(BASE_DIR), 'logs/debug-local.log')
         },
     },
     'root': {  # For dev, show errors + some info in the console

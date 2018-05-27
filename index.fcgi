@@ -14,7 +14,7 @@ try:
     import traceback
     WSGIServer(get_wsgi_application()).run()
 except Exception as e:
-    with open('/home1/sumitsk20/public_html/dikshagulatidietplate.com/logs/fcgi.log', 'a+') as f:
+    with open('logs/fcgi.log', 'a+') as f:
         f.write("\n\n")
         f.write(str(e))
         f.write(traceback.format_exc())
