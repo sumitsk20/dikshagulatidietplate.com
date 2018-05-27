@@ -5,6 +5,13 @@ from dotenv import load_dotenv, find_dotenv
 from datetime import datetime
 
 load_dotenv(find_dotenv())
+
+try:
+    import pymysql
+    pymysql.install_as_MySQLdb()
+except ImportError:
+    pass
+
 try:
     if __name__ == "__main__":
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dietplate.settings")

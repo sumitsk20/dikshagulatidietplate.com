@@ -8,6 +8,8 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template import Context
+
+from services.models import Service
 from .forms import ContactForm
 from services.forms import AppointmentForm
 from django.template.loader import get_template
@@ -92,12 +94,13 @@ def book_appointment(request):
         form = AppointmentForm(request.POST)
         if form.is_valid():
             form.save()
+            service=Service.objects.filter(id=request.POST.get("service", "")).values_list('name', flat=True)[0]
             template = get_template('services/appoint_success_response_email.html')
             context = Context({
                 'name': request.POST.get("name", ""),
                 'mobile': request.POST.get("number", ""),
                 'email': request.POST.get("email", ""),
-                'category': request.POST.get("service", ""),
+                'category': service,
                 'message': request.POST.get("message", ""),
             })
             content = template.render(context)
@@ -105,9 +108,9 @@ def book_appointment(request):
                 subject="[DietPlate] New Appointment",
                 body=content,
                 from_email="DietPlate <info@dikshagulatidietplate.com>",
-                to=['sumitsk20@gmail.com'],  # main id of dietplate
-                # to=['dietplate.dp@gmail.com'],  # main id of dietplate
-                # bcc=['diksha.gulati1310@gmail.com'],  # bcc gmail id of dietplate
+                # to=['sumitsk20@gmail.com'],  # main id of dietplate
+                to=['dietplate.dp@gmail.com'],  # main id of dietplate
+                bcc=['diksha.gulati1310@gmail.com'],  # bcc gmail id of dietplate
             )
             email.content_subtype = "html"
             email.send(fail_silently=False)

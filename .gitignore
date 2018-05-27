@@ -596,6 +596,9 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
+.htaccess
+index.fcgi
+*.fcgi
 ### VisualStudio Patch ###
 # By default, sensitive information, such as encrypted password
 # should be stored in the .pubxml.user file.
