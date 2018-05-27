@@ -1,0 +1,68 @@
+<div class="modal fade" id="appoint" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+      <h3 class="modal-title" id="lineModalLabel">Book an Appointment</h3>
+    </div>
+    <div class="modal-body">
+      <form class="ajax-form" id ="id-appointment-form" name="appointment-form" method="post" action="{% url 'book_appointment' %}">
+              {% csrf_token %}           
+                 <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Name" required="required">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Email Address" required="required">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="text" name="number" class="form-control" placeholder="Phone" required="required">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <select id="id_service" type="select" name="service" class="form-control" required="required">
+                          {% for id,name in form.service.field.choices %}
+                              <option value="{{ id }}" {% if form.fields.service.value == id %} selected{% endif %}>{{ name }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <textarea name="message" id="message" class="form-control" rows="4" placeholder="Enter your message" required="required"></textarea>
+                  </div> 
+                 <div class="form-group">
+                   {{form.captcha}}
+                  </div>                   
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-warning btn-lg btn-block">Send Now</button>
+                  </div>
+      </form>
+
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="modal fade" id="appointMessage" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+      <h3 class="modal-title" id="appointMessageTitle">DietPlate</h3>
+    </div>
+    <div class="modal-body">
+        <h4></h4>
+
+    </div>
+  </div>
+  </div>
+</div>

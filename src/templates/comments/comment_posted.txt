@@ -1,0 +1,12 @@
+{% if parent %}
+Hi {% if parent.user.get_full_name %}{{parent.user.get_full_name}} {% else %} {{user}} {% endif %}
+{% if user.get_full_name %}{{user.get_full_name}} {% else %} {{user}} {% endif %} has replied to your comment "{{parent.content|truncatechars_html:40}}" on Article "{{content_title}}".
+Please visit {{content_url}} to reply back. 
+{% else %}
+Hi Ditplate user,
+{% if user.get_full_name %}{{user.get_full_name}} {% else %} {{user}} {% endif %} has replied to your comment {{parent.content|truncatechars_html:40}} on Article "{{parent.content_object.title}}".
+Please visit {{content_url}} to reply back. 	
+{% endif %}
+
+
+

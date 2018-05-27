@@ -1,0 +1,56 @@
+
+<div class="entry-comments">
+    <h3>Comments <span style='color:#ff9933;'>({{comments.count}})</span></h3>
+    <div class="entry-comment-list">
+        {% for comment in comments %}
+        <div class="parent-comments">
+        <header class="comment-header">
+            <p><span style='color:#996633;font-size:18px;'>{{ comment.user.get_full_name }}</span> <span style='color:#777;'>commented <small>{{ comment.timestamp|timesince }} ago</small></span></p>
+        </header>
+        <div class="comment-content col-xs-offset-1">
+            <p>{{ comment.content }}</p>
+        </div>
+
+
+<!-- CHILD COMMENT START-->
+        <div class='comment-reply col-xs-offset-1'>
+            {% for child_comment in comment.children %}
+            <div class="child-comment">
+                <header class="comment-header">
+                    <p><span style='color:#996633;font-size:18px;'>{{ child_comment.user.get_full_name }}</span> <span style='color:#777;'> replied <small>{{ child_comment.timestamp|timesince }} ago</small></span></p>
+                </header>
+                <div class="comment-content col-xs-offset-1">
+                    <p>{{ child_comment.content }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% if request.user.is_authenticated %}
+                <form class="comment-reply-form" method="POST" action="." style='display: none;'> {% csrf_token %}
+                    {{ comment_form }}
+                    <input type='hidden' name='parent_id' value='{{ comment.id }}'>
+                    <input type='submit' value='Reply' class='btn btn-warning'>
+                </form>
+            {% endif %}
+        </div>
+<!-- CHILD COMMENT END-->
+        <footer class="comment-footer">
+            <p class="pull-right"><a href="#" class="comment-reply-btn btn btn-warning " role="button">Reply ({{comment.children.count}})</a> | <a class="btn btn-warning comment-thread-btn" role="button" href='{{ comment.get_absolute_url }}'>Thread</a></p>
+        </footer>
+        </div>
+        <div class="clearfix"></div>
+        <hr/>
+        {% endfor %}
+    </div>
+    <div class="new-comment">
+        {% if request.user.is_authenticated %}
+        <h2>Leave a Comment:</h2>
+        <form method="POST" action="."> {% csrf_token %}
+            {{ comment_form }}
+            <input type='submit' value='Post comment' class='btn btn-warning'>
+        </form>
+        {% else %}
+            <h2>"You must login to comment"</h2>
+            <p><a href="{% url 'account_login' %}?next={{ request.path }}">Login here</a> or <a href="{% url 'account_signup' %}?next={{ request.path }}">Signup</a></p>
+        {% endif %}
+    </div>
+</div>

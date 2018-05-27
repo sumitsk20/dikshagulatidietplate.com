@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<a href="{% url 'admin:index' %}">
+    <img style="background-color: white" src="{% static 'layout/img/logo.png' %}" alt="Dietplate" width="70%">
+</a>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

@@ -1,0 +1,122 @@
+{% load i18n static %}
+{% load dp_form_tags %}
+{% load dp_dropdown_menu %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+    <title>{% block head_title %}{% if title %}{{ title }} - {% endif%}DietPlate | Creating healthier lives{% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'layout/img/dp-icon.png' %}"/>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="title" content="{{ title }}">
+        <meta name="robots" content="noodp"/>
+
+    {% block meta %}
+        <meta name="description" content="{% block seodesc %}{% endblock %}">
+        <meta name="author" content="{% block seoauth %}{% endblock %}">
+    {% endblock meta %}
+
+
+    {% block extrahead %}
+    {% endblock %}
+
+    <!-- Bootstrap Core CSS -->
+
+    <link href="{% static 'layout/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'layout/css/scrolling-nav.css' %}" rel="stylesheet">
+    <link href="{% static 'layout/css/dp-base.css' %}" rel="stylesheet">
+    <link href="{% static 'layout/css/extra-tabs.css' %}" rel="stylesheet">
+    <link href="{% static 'layout/css/bmiForm.css' %}" rel="stylesheet">
+    
+    <script src="{% static 'layout/js/jquery.js' %}"></script>
+    <script src="//platform-api.sharethis.com/js/sharethis.js#property=5b09dd91cbc3900011ee2b4b&product=inline-share-buttons"></script>
+    {% block extrastyle %}
+    
+    
+    {% endblock %}
+
+<script type="text/javascript">
+
+    $(window).load(function() {
+        $("body").easeScroll();
+        $(".loader").fadeOut("slow");
+    })
+    $(document).ready(function() {
+        // get current URL path and assign 'active' class
+        var pathname = window.location.pathname;
+        $('.nav > li > a[href="'+pathname+'"]').addClass('active');
+    })
+
+</script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+{% load i18n %}
+
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<div class="loader"></div> 
+{% navigation %}
+    {% if messages %}
+    <div>
+      <strong>Messages:</strong>
+      <ul>
+    {% for message in messages %}
+    <li>{{message}}</li>
+    {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+<div class="appointment-form-tab">
+<div class="panel panel-default" data-toggle="modal" data-target="#appoint">
+    <div class="panel-leftheading">
+        <h3 class="panel-lefttitle">Book an Appointment</h3>
+    </div>
+</div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+{% appointment_form %}
+
+{% include 'layout/footer.html' %}
+
+    <!-- jQuery -->
+      <a class="page-scroll scrollToTop" href="#page-top" ><span class="glyphicon glyphicon-upload" aria-hidden="true"></span></a>  
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'layout/js/bootstrap.min.js' %}"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="{% static 'layout/js/bmiForm.js' %}"></script>
+    <script src="{% static 'layout/js/wow.min.js' %}"></script>
+    <script src="{% static 'layout/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'layout/js/scrolling-nav.js' %}"></script>
+    <script src="{% static 'layout/js/mousescroll.js' %}"></script>
+    <script src="{% static 'layout/js/ajax_form.js' %}"></script>
+    <script type="text/javascript">
+        new WOW().init();
+    </script>
+
+
+{% block extrascript%}
+{% endblock %}
+<script id="dsq-count-scr" src="//dietplate.disqus.com/count.js" async></script>
+
+</body>
+
+</html>

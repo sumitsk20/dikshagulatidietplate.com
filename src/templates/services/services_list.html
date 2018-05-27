@@ -1,0 +1,45 @@
+{% extends 'layout/master.html' %}
+{% load i18n static %}
+    {% block extrastyle %}
+    
+   {% endblock %}
+{% block content %}
+<div class="container wrapper">
+<div class="content">
+	<div class="row">
+		<div class="text-center ">
+			<h2>Trending DietPlate Articles</h2>
+		</div>
+		{% for service in all_services %}
+		<div class="card col-sm-4">
+			<div class="card-thumb">
+				{% if service.featured_image %}
+                    <a href="{{ service.get_absolute_url }}" title="{{ service.name }}">
+                        <img src="{{ service.featured_image.url }}" class="card-img img-responsive" alt="{{ service.name }}" >
+                    </a>
+                {% else %}
+                    <a href="{{ service.get_absolute_url }}" title="{{ service.name }}">
+                        <img src="/media/featured_post_images/default-featured-image.png" class="entry-featured-img img-responsive" alt="{{ service.name }}" >
+                    </a>
+                {% endif %}
+			</div>
+
+			<div class="card-meta">
+				<h3 class="card-title">
+					<a href="{{ service.get_absolute_url }}"> {{ service.name }}</a>
+				</h3>
+			</div>
+			<div class=card-content>
+              <p>{{ service.content|safe|striptags|truncatechars_html:200 }}</p>
+            </div>
+        <footer class="card-footer text-center">
+            <p><a href="{{ service.get_absolute_url }}" class="btn btn-block btn-lg btn-warning count-read-button " role="button">Know More</a></p>
+        </footer>  
+
+		</div>
+            {% endfor %}
+	</div>
+</div>
+
+</div>
+{% endblock %}

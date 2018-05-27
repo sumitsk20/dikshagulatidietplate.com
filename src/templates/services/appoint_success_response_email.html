@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+th {
+    text-align: left;
+}
+</style>
+</head>
+<body>
+
+<h2>You have new appointment request on your website for {{ category }} by {{ name }}.s</h2>
+<p>Details are as follow:</p>
+
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Mobile</th>
+    <th>Email</th>
+    <th>Category</th>
+    <th>Message</th>
+  </tr>
+  <tr>
+    <td>{{ name }}</td>
+    <td>{{ mobile }}</td>
+    <td>{{ email }}</td>
+    <td>{{ category }}</td>
+    <td>{{ message }}</td>
+  </tr>
+</table>
+
+</body>
+</html>
+

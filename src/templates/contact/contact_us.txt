@@ -1,0 +1,8 @@
+Sender's Name: {{ contact_name }}
+
+Sender's Email: {{ contact_email }}
+
+Subject: {{ contact_subject }}
+
+Message:
+{{ form_content|safe|striptags }}

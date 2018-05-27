@@ -1,0 +1,54 @@
+ <div class="bmi-calculator wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
+  <form class="form-horizontal form-bmi" role="form">
+  <p class="heading">BMI Calculator</p>
+    <div class="bmi-weight">
+      <div class="form-horizontal">
+        <label for="weight">How much do you weigh?</label>
+          <div class='input-group'>
+              <input id="weight-value" class='form-control' type='text' name='weight-name'  placeholder='Enter your weigh'/>
+                <span class='input-group-btn'>
+                  <div class="btn-group">
+                    <button type="button" class="btn bmi-btn  btn-block weight active-weight selected-weight" id='kg'>kg</button>
+                  </div>
+                  <div class="btn-group">
+                    <button type="button" class="btn bmi-btn  btn-block weight" id='lbs'>lbs</button>
+                  </div>                          
+                </span>
+          </div>
+        <input name="weight" type="hidden" id="weight-measure" value='' readonly="readonly" />
+      </div>
+    </div>
+    <div class="bmi-height">
+      <div class="form-horizontal">
+        <label for="height">How tall are you?</label>
+          <div class='input-group'>
+              <input id="height-value-ft" class='control-group form-control' style="max-width: 50%;" type='text' name='height-name' placeholder='ft'/>
+              <input id="height-value-in" class='control-group form-control' style="max-width: 50%;" type='text' name='height-name' placeholder='in'/>
+              <span class='input-group-btn'>
+                  <div class="btn-group">
+                    <button type="button" class="btn bmi-btn  btn-block height active-height selected-height" id='ft-in'>ft-in</button>
+                  </div>
+              </span>
+              <input id="height-value" class='control-group form-control ' type='text' name='height-name' placeholder='cm'/>
+              <span class='input-group-btn '>
+                  <div class="btn-group">
+                    <button type="button" class="btn bmi-btn  btn-block height" id='cm'>cm</button>
+                  </div>                        
+              </span>
+          </div>
+        <input name="height" type="hidden" id="height-measure" value='' readonly="readonly" />
+      </div>
+    </div>
+    <div class="bmi-result">
+      <div class="form-horizontal">
+      <label for="height">BMI Score</label>
+        <div class='input-group'>
+          <input id="bmi-result" class='form-control' type='text' name='result' value='' readonly="readonly" />
+          <span class='input-group-btn'>
+              <button id="cal-result" class='btn btn-default' type="button" >Health Status</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div> 

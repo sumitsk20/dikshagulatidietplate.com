@@ -1,0 +1,29 @@
+.aboutus{
+	padding: 30px 0 30px 0;
+}
+.aboutus img{
+	margin: auto;
+	 border: solid 1px #ff9933;
+    -moz-box-shadow: 5px 5px 0px #996633;
+    -webkit-box-shadow: 5px 5px 0px #996633;
+     box-shadow: 5px 5px 0px #996633;
+
+}.about-content{
+	padding-top:20px;
+}
+.aboutus p{
+	text-align: justify;
+	 font-size: 20px;
+	 line-height: 27px;
+	 font-weight: 500;
+}
+@media(max-width: 764px){
+	.dikshadp{
+		max-height: 400px;
+	}
+	.aboutus p{
+	 font-size: 18px;
+	 line-height: 25px;
+	 font-weight: 500;
+}
+}

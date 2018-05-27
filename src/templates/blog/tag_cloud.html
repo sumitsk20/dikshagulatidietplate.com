@@ -1,0 +1,12 @@
+        <div class="widget-box">
+        	<div class="widget-wrap tag-cloud">
+				<h4 class="widget-title ">TAG CLOUD</h4>
+	            <ul class="tag-list">
+	            {% for tag in all_tag %}
+	            	{% if not tag.post_set.active.count == 0 %}
+		                <li class="tag-item"><a href="{{ tag.get_absolute_url }}">{{ tag.name }} <span>({{ tag.post_set.active.count}})</span ></a></li>
+	                {% endif %}
+	            {% endfor %}
+	            </ul>
+            </div>
+        </div>

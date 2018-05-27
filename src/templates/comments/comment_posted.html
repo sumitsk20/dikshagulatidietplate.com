@@ -1,0 +1,11 @@
+{% if parent.id %}
+	Hi {{parent.user.get_full_name}}
+	{{user.get_full_name}} has replied to your comment {{parent.content|truncatechars_html:40}}.
+
+	Meanwhile you can go through trending post on our blog.
+{% else %}
+	
+{% endif %}
+
+
+

@@ -1,0 +1,29 @@
+{% extends "layout/master.html" %}
+{% load i18n static %}
+{% load urlify %}
+
+
+{% block head_title %}
+{{ instance.title }} | {{ block.super }}
+{% endblock head_title %}
+{% block extrastyle %}
+<link href="{% static 'layout/css/dp-blog-post.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container wrapper bg">
+ <div class='col-md-8'>
+  <h1>Confirm Delete</h1>
+            <form method="POST" action="."> {% csrf_token %}
+                <p>A re you sure you want to delete : <span style='color:#1e1e1e;font-size:18px;'>"{{ object.content }}"?</span></p>
+              
+                <input type='submit' value='Confirm' class='btn btn-warning'>
+                <a href='{{ object.get_absolute_url }}' class='btn btn-default'>Cancel</a>
+            </form>
+       <hr/>
+</div>
+{% include 'blog/right_sidebar.html' %}
+</div>
+{% endblock content %}

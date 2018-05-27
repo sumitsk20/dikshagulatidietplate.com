@@ -1,0 +1,79 @@
+{% extends "layout/master.html" %}
+{% load i18n static %}
+
+    {% block meta %}
+        <meta name="robot" content="noindex,nofollow">
+    {% endblock meta %}
+
+    {% block extrastyle %}
+        <link href="{% static 'layout/css/dp-blog.css' %}" rel="stylesheet">
+
+    {% endblock %}
+
+{% block content %}
+
+<div class="container wrapper bg">
+    <div class='col-md-8'>
+        {% for post in cat_post_list %}
+        <article class="entry">
+            <header class="entry-header">
+                <h2 class="entry-title"><a href="{{ post.get_absolute_url }}"> {{ post.title }}</a></h2>
+                <p class="entry-meta">
+                <small>
+                    <span class="entry-author">
+                        By: {{ post.author.get_full_name }}
+                    </span>
+                    <span class="entry-category">
+                        In: {{ post.all_categories }}
+                    </span>
+                    <span class="entry-post-date">
+                        Posted on: {{ post.published_on }}
+                    </span>
+                    <span class="entry-update-date">
+                        Last updated: {{ post.last_updated }}
+                    </span></small>
+                    {% if not post.publish_this_post %}<h3><span style='color:red;'>Staff only: Draft</span></h3>{% endif %} {% if post.published_on > today %}<h3><span style='color:red;'>Staff Only: Future Post</span></h3>{% endif %}
+                </p>
+            </header>
+            <div class="entry-content">
+                {% if post.featured_image %}
+                <a href="{{ post.get_absolute_url }}" title="{{ post.title }}">
+                    <img src="{{ post.featured_image.url }}" class="entry-featured-img img-responsive" alt="{{ post.title }}" >
+                </a>
+                {% else %}
+                <a href="{{ post.get_absolute_url }}" title="{{ post.title }}">
+                    <img src="/media/featured_post_images/default-featured-image.png" class="entry-featured-img img-responsive" alt="{{ post.title }}" >
+                </a>
+                {% endif %}
+                <p>{{ post.content|safe|striptags|truncatechars_html:120 }} <span style='color:red;'>Read time: {% if post.read_time <= 1 %} < 1 Minute {% else %}{{ post.read_time }} minutes {% endif %}</span></p>
+            </div>
+            <footer class="entry-footer">
+                <p><a href="{{ post.get_absolute_url }}" class="btn btn-warning entry-read-button" role="button">Read More</a></p>
+            </footer>                
+                
+        </article>
+        {% endfor %}
+
+<!-- pagination -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if post_list.has_previous %}
+                    <a href="?{{ page_request_var }}={{ post_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ post_list.number }} of {{ post_list.paginator.num_pages }}.
+                </span>
+
+                {% if post_list.has_next %}
+                    <a href="?{{ page_request_var }}={{ post_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <!-- SIDEBAR -->
+ {% include 'blog/right_sidebar.html' %}
+</div>
+
+{% endblock content %}

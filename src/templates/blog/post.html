@@ -1,0 +1,105 @@
+{% extends "layout/master.html" %}
+{% load i18n static %}
+{% load urlify %}
+
+{% block meta %}
+        <meta name="author" content="{{ post.author.get_full_name }}">
+        <meta name="description" content="{{ post.seo_desc }}">
+        <meta name="keywords" content="{{ post.seo_keywords }}">
+{% endblock meta %}
+{% block extrastyle %}
+<link href="{% static 'layout/css/dp-blog-post.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container wrapper bg">
+    <div class='col-md-8'>
+        <article class="entry">
+            <header class="entry-header">
+                <h1 class="entry-title">
+                    {{ post.title }}
+                    <small>
+                        {% if not post.publish_this_post %}
+                        <span style='color:red;'> *Draft*</span>
+                        {% endif %}
+                        <a class="btn btn-info btn-xs" href="{% url 'admin:blog_post_change' post.id %}"> Edit</a>
+                    </small></h1>
+                <p class="entry-meta">
+                <small>
+                    <span class="entry-author">
+                        By: {{ post.author.get_full_name }}
+                    </span>
+                    <span class="entry-category">
+                        In: {{ post.all_categories }}
+                    </span>
+                    <span class="entry-post-date">
+                        Posted on: {{ post.published_on }}
+                    </span>
+                    <span class="entry-update-date">
+                        Last updated: {{ post.last_updated|timesince }}
+                    </span></small>
+                </p>
+            </header>
+            <div class="entry-content">
+                {% if post.featured_image %}
+                    <img src="{{ post.featured_image.url }}" class="entry-featured-img img-responsive" alt="{{ post.title }}" >
+                {% else %}
+                <img src="/media/featured_post_images/default-featured-image.png" class="entry-featured-img img-responsive" alt="{{ post.title }}" >
+                {% endif %}
+                <hr>
+                <div class="entry-content-post">
+                    {{ post.content|safe}}
+                </div>
+            </div>
+            <footer class="entry-footer">
+                <div class="author-box">
+                </div>
+            </footer>
+        </article>
+<hr/>
+        <div class="sharethis-inline-share-buttons"></div>
+<div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = {{ post.get_absolute_url }};  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = {{ post.id }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://dietplate.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    <!-- SIDEBAR -->
+ {% include 'blog/right_sidebar.html' %}
+</div>
+
+{% endblock content %}
+
+{% block extrascript%}
+<script>
+$( ".comment-reply-btn" ).click(function() {
+    event.preventDefault();
+  $(this).parents(".parent-comments").find("form.comment-reply-form").fadeToggle("slow");
+});
+</script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $(".comment-reply-btn").click(function(event){
+        event.preventDefault();
+        $(this).parent(".comment-reply ").fadeToggle();
+    })
+})
+</script>
+{% endblock %}

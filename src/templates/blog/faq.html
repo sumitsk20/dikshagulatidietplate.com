@@ -1,0 +1,38 @@
+{% extends "layout/master.html" %}
+{% load i18n static %}
+
+
+{% block meta %}
+    <meta name="description" content="Natural and Healthy Recepies for loosing weight and staying healthy. DietPlate Blog is a great place to find such Natural and Healthy Tips">
+{% endblock meta %}
+    {% block extrastyle %}
+        <link href="{% static 'layout/css/dp-faq.css' %}" rel="stylesheet">
+    {% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    <div class="container bg">
+        <div class='col-md-8'>
+                
+            {% for faq in faqs %}
+   <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ forloop.counter}}"><h4>{{faq.question}}</h4></a>
+                        
+                    </div>
+                    <div id="collapse{{ forloop.counter}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            {{faq.answer|safe}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- SIDEBAR -->
+            {% include 'blog/right_sidebar.html' %}
+    </div>
+</div>
+{% endblock content %}

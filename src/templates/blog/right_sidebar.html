@@ -1,0 +1,19 @@
+    {% load blog_tags %}
+    <!-- SIDEBAR -->
+    <div class="col-md-4 right-sidebar">
+    <!-- SEARCHBAR WIDGET -->
+        <form method='GET' action=''>
+                    <div class='input-group'>
+                        <input class='form-control' type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
+                        <span class='input-group-btn'>
+                            <!-- <input class='btn btn-default' type='submit' value='Search' /> -->
+                            <button class='btn btn-default' type='submit'>Search <i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+        </form>
+        {% category_box %}
+        {% article_widget_group %}
+        {% tag_cloud %}
+
+
+    </div>

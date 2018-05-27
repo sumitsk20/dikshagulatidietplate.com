@@ -1,0 +1,70 @@
+{% extends 'layout/master.html' %}
+{% load i18n static %}
+{% block title %}Contact - {{ block.super }}{% endblock %}
+    {% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'layout/css/contact_us.css' %}">
+    <script src="{% static 'layout/js/parallax.min.js' %}"></script>
+    
+   {% endblock %}
+{% block content %}
+<div class="container wrapper bg">
+<div class="content">
+	<div class="jumbotron text-center">
+		<h2>Your Message has been Sent.</h2>
+		<h3>Someone from "DietPlate" will contact you soon.</h3>
+	</div>
+	<div class="row">
+		<div class="text-center ">
+			<h2>Trending DietPlate Articles</h2>
+		</div>
+		{% for post in trending_post %}
+		<div class="card col-sm-4">
+			<div class="card-thumb">
+				{% if post.featured_image %}
+                    <a href="{{ post.get_absolute_url }}" title="{{ post.title }}">
+                        <img src="{{ post.featured_image.url }}" class="card-img img-responsive" alt="{{ post.title }}" >
+                    </a>
+                {% else %}
+                    <a href="{{ post.get_absolute_url }}" title="{{ post.title }}">
+                        <img src="/media/featured_post_images/default-featured-image.png" class="entry-featured-img img-responsive" alt="{{ post.title }}" >
+                    </a>
+                {% endif %}
+			</div>
+
+			<div class="card-meta">
+				<h3 class="card-title">
+					<a href="{{ post.get_absolute_url }}"> {{ post.title }}</a>
+				</h3>
+                <p class="card-meta">
+                <small>
+                    <span class="card-author">
+                        By: {{ post.author.get_full_name }}
+                    </span>
+                    <span class="card-category">
+                        In: {{ post.all_categories }}
+                    </span>
+                    {% if post.comments.count >= 1 %}
+                    <span class="card-comments">
+                        {{ post.comments.count }} Comments
+                    </span>
+                    {% endif %}
+                </small>
+                </p>
+			</div>
+			<div class=card-content>
+              <p>{{ post.content|safe|striptags|truncatechars_html:80 }} <span style='color:red;'>Read time: {% if post.read_time <= 1 %} < 1 Minute {% else %}{{ post.read_time }} minutes {% endif %}</span></p>
+            </div>
+        <footer class="card-footer text-center">
+            <p><a href="{{ post.get_absolute_url }}" class="btn btn-block btn-lg btn-warning count-read-button " role="button">Read More</a></p>
+        </footer>  
+
+		</div>
+            {% endfor %}
+	</div>
+</div>
+
+
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+Hi <b>{{contact_name}}</b>
+We have received your message and we will get back to you soon.
+
+{% if trending_post %}
+Meanwhile you can go through trending post on our blog.
+{% for post in trending_post %}
+<li class="post-item"><a href="www.dikshagulatidietplate{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+{% endfor %}{% endif %}

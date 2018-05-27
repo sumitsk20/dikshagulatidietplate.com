@@ -1,0 +1,42 @@
+   {% load i18n static %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                
+                    <i class="navbar-toggle-caret fa fa-caret-square-o-down fa-2x pull-right" aria-hidden="true" data-toggle="collapse" data-target=".navbar-ex1-collapse"></i>
+               
+                <a class="navbar-brand" href="{% url 'index' %}"> <img class="logo-img img-responsive" src="{% static 'layout/img/logo.png' %}"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav text-center">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                   <!--  <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li> -->
+                    <li>
+                        <a class="" href="{% url 'about' %}">ABOUT US</a>
+                    </li>
+                    <li>
+                        <a class="" href="{% url 'blog:faq' %}">DIET FAQ</a>
+                    </li>
+                     <li>
+                        <a class="" href="{% url 'blog:index' %}">BLOG</a>
+                    </li>
+                    <li>
+                        <a class="" href="{% url 'contact' %}">REACH TO US</a>
+                    </li>                    
+                        
+                </ul>
+                <span class="pull-right call-action hidden-xs" data-toggle="modal" data-target="#appoint">
+                    <a href="#" class="button">REQUEST A CALL</a>
+                </span>
+                
+            <!-- /.navbar-collapse -->
+        </div>
+        
+        <!-- /.container -->
+        </div>
+    </nav>

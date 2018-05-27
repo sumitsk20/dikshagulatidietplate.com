@@ -1,0 +1,34 @@
+
+  {% extends "layout/master.html" %}
+    {% load i18n static %}
+
+    {% block extrastyle %}
+    <link href="{% static 'layout/css/dp-aboutus.css' %}" rel="stylesheet">
+    {% endblock %}
+    <!-- Intro Section -->
+{% block content %} 
+      <div class="wrapper">
+      <div class="about-cover hidden-xs">
+          <img class="img-responsive" style="width :100%;max-height: 350px;" src="{% static 'layout/img/dp-full.jpg' %}">
+      </div>
+      <div class="container aboutus bg">
+           <div class="col-sm-5">
+               <img class="img-responsive dikshadp" src="{% static 'layout/img/indoor_dp.jpg' %}">
+           </div>
+           <div class="col-sm-7">
+            <div class="about-content">
+                <p>In this hustle bustle of our super busy life, it has become even more difficult to take care of ourselves. Good health somehow gets pushed to the last in our priority list. At times it is that new body hugging dress that we bought that becomes an eye opener.</p><p>
+Lost in this fast moving world, don't you think we have really taken our body for granted? What is it that we are not doing right? What is it that needs to fall in place? Diet. Obesity, PCOS, pregnancy, thyroid or whatever it is, your diet is your ultimate rescuer. The good news is the ideal diet for you is just one step away now. Meet Diksha Gulati and let her know you bodily concerns. She will take care of it all. Having worked with brands like Jeewan Mala Hospital and Fortis Hospital she is presently working with BLK hospital, Diksha has mastered the art of staying healthy or say keeping people healthy.</p>
+<p>
+Right food at right time is the key to ultra-right health.</p>
+</div>
+               
+           </div>
+      </div>
+
+      </div>
+
+{% endblock %}
+
+{% block extrascript%}
+{% endblock %}

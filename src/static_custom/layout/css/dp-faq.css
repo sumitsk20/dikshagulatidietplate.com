@@ -1,0 +1,28 @@
+.panel-default {
+    border-color: #ff9933;
+    border-radius: 10px; 
+}
+.panel {
+    margin-bottom: 20px;
+    background-color: #ffe;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.06);
+    /* box-shadow: 0 1px 1px rgba(0,0,0,.05); */
+}
+.panel-group .panel {
+    border-radius: 10px;
+}
+.panel-default .panel-heading {
+    background-color: rgba(153,102,51,0.8);
+    border-color: transparent;
+    border-radius: 10px; 
+}
+.panel-default .panel-heading a{
+	color: #fff;
+	text-decoration: none;
+
+}
+.panel-group .panel-body { 
+    border-top: 0px !important;
+ }
