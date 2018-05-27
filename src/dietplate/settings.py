@@ -102,7 +102,7 @@ else:
             'NAME':'sumitsk2_dietplate',
             #'NAME': 'dietplate_db',
             'USER': 'sumitsk2_dp',
-            'PASSWORD': 'Sumit@123',
+            'PASSWORD': 'dietplate.dp',
             'HOST': '127.0.0.1',
             'PORT': '3306',
         }
